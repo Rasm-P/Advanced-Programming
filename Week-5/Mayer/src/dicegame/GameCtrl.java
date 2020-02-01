@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dicegame;
 
 /**
@@ -33,16 +28,19 @@ public class GameCtrl {
         while (true) {
             player1.takeTurn();
             TextUI.println(player1.getName() + " says they rolled " + player1.getShowToOtherPlayer());
-            player1.setScore(player1.getScore() - player2.turnChoice(player1));
             if (PVP) {
+                player1.setHealth(player1.getHealth() - player2.turnChoice(player1.getName(), player1.getShowToOtherPlayer(), player1.getRoll()));
                 player2.takeTurn();
                 TextUI.println(player2.getName() + " says they rolled " + player2.getShowToOtherPlayer());
-                player2.setScore(player2.getScore() - player1.turnChoice(player2));
+                player2.setHealth(player2.getHealth() - player1.turnChoice(player2.getName(), player2.getShowToOtherPlayer(), player2.getRoll()));
             } else {
+                player1.setHealth(player1.getHealth() - god.turnChoice(player1.getName(), player1.getShowToOtherPlayer(), player1.getRoll()));
                 god.takeTurn();
+                TextUI.println(god.getName() + " says they rolled " + god.getShowToOtherPlayer());
+                god.setHealth(god.getHealth() - player1.turnChoice(god.getName(), god.getShowToOtherPlayer(), god.getRoll()));
             }
 
-            if (player1.getScore() == 0 || player2.getScore() == 0 || god.getScore() == 0) {
+            if (player1.getHealth() <= 0 || player2.getHealth() <= 0 || god.getHealth() <= 0) {
                 gameFinished();
                 break;
             }
@@ -64,21 +62,21 @@ public class GameCtrl {
         TextUI.println("Game over!");
 
         if (PVP) {
-            TextUI.println(player1.getName() + " has " + player1.getScore() + " health.");
-            TextUI.println(player2.getName() + " has " + player2.getScore() + " health.");
-            if (player1.getScore() > player2.getScore()) {
+            TextUI.println(player1.getName() + " has " + player1.getHealth() + " health.");
+            TextUI.println(player2.getName() + " has " + player2.getHealth() + " health.");
+            if (player1.getHealth() > player2.getHealth()) {
                 TextUI.println("The winner is " + player1.getName() + "!");
-            } else if (player1.getScore() < player2.getScore()) {
+            } else if (player1.getHealth() < player2.getHealth()) {
                 TextUI.println("The winner is " + player2.getName() + "!");
             } else {
                 TextUI.println("It was a draw!");
             }
         } else {
-            TextUI.println(player1.getName() + " has " + player1.getScore() + " points.");
-            TextUI.println(god.getName() + " has " + god.getScore() + " points.");
-            if (player1.getScore() > god.getScore()) {
+            TextUI.println(player1.getName() + " has " + player1.getHealth() + " points.");
+            TextUI.println(god.getName() + " has " + god.getHealth() + " points.");
+            if (player1.getHealth() > god.getHealth()) {
                 TextUI.println("The winner is " + player1.getName() + "!");
-            } else if (player1.getScore() < god.getScore()) {
+            } else if (player1.getHealth() < god.getHealth()) {
                 TextUI.println("The winner is " + god.getName() + "!");
             } else {
                 TextUI.println("It was a draw!");
