@@ -1,4 +1,4 @@
-package dicegame;
+package mayer;
 
 import java.util.Random;
 
@@ -64,13 +64,13 @@ public class PlayerCtrl {
                 } else if (d1 == 1 && d2 == 3 && show != 12) {
                     TextUI.println("Lille-meyer! You rolled higher than " + playerName + ", who lose -1 health");
                     return 1;
-                } else if (d1 == d2 && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1)) {
+                } else if (d1 == d2 && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1) && show != 12 && show != 13) {
                     TextUI.println("A pair!, You rolled higher than " + playerName + ", who lose -1 health");
                     return 1;
                 } else if (d1 == d2 && String.valueOf(show).charAt(0) == String.valueOf(show).charAt(1) && d1 * 10 + d2 < show) {
                     TextUI.println("A pair!, You rolled higher than " + playerName + ", who lose -1 health");
                     return 1;
-                } else if (d1 * 10 + d2 > show && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1)) {
+                } else if (d1 * 10 + d2 > show && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1) && show != 12 && show != 13) {
                     TextUI.println("You rolled higher than " + playerName + ", who lose -1 health");
                     return 1;
                 } else {

@@ -1,4 +1,4 @@
-package dicegame;
+package mayer;
 
 /**
  *
