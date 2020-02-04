@@ -45,7 +45,7 @@ public class AI {
                     return 0;
                 } else if (d1 == 1 && d2 == 2) {
                     TextUI.println("Meyer! " + name + " rolled higher than " + playername + ", who lose -1 health");
-                    return 1;
+                    return 2;
                 } else if (d1 == 1 && d2 == 3 && show != 12) {
                     TextUI.println("Lille-meyer! " + name + " rolled higher than " + playername + ", who lose -1 health");
                     return 1;
