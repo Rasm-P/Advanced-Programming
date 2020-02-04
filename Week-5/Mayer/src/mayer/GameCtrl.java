@@ -6,9 +6,9 @@ package mayer;
  */
 public class GameCtrl {
 
-    private PlayerCtrl player1;
-    private PlayerCtrl player2;
-    private AI god;
+    private final PlayerCtrl player1;
+    private final PlayerCtrl player2;
+    private final AI god;
     private boolean PVP;
 
     public GameCtrl() {

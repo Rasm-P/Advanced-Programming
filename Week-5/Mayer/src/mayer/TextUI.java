@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class TextUI {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void print(String s) {
         System.out.print(s);
@@ -19,7 +19,7 @@ public class TextUI {
     }
 
     public static String getString() {
-        return scanner.nextLine();
+        return SCANNER.nextLine();
     }
 
     public static int getInteger() {
@@ -33,7 +33,7 @@ public class TextUI {
         }
     }
 
-    static int choice(String[] choices) {
+    public static int choice(String[] choices) {
         if (choices == null || choices.length == 0) {
             throw new IllegalArgumentException();
         }

@@ -8,18 +8,18 @@ import java.util.Random;
  */
 public class PlayerCtrl {
 
-    private static Random rnd = new Random();
+    private static final Random RND = new Random();
     private String name;
     private int health = 6;
     private int roll;
     private int showToOtherPlayer;
 
-    void takeTurn() {
+    public void takeTurn() {
         String[] choices = {"show", "bluff"};
         TextUI.println("It's your turn " + name + ", your health is " + health + "! Press Enter to roll!");
         TextUI.getString();
-        int d1 = rnd.nextInt(6) + 1;
-        int d2 = rnd.nextInt(6) + 1;
+        int d1 = RND.nextInt(6) + 1;
+        int d2 = RND.nextInt(6) + 1;
         roll = d1 * 10 + d2;
         TextUI.println(name + " rolled " + d1 + " and " + d2 + ", that is: " + d1 + d2);
         if (d1 == 1 && d2 == 2) {
@@ -44,7 +44,7 @@ public class PlayerCtrl {
         }
     }
 
-    int turnChoice(String playerName, int show, int roll) {
+    public int turnChoice(String playerName, int show, int roll) {
         String[] choices = {"yes", "no"};
         if (show != 0) {
             TextUI.println(name + " do you believe that " + playerName + " rolled this?");
@@ -52,8 +52,8 @@ public class PlayerCtrl {
             if (answer == 0) {
                 TextUI.println(name + " press Enter to roll!");
                 TextUI.getString();
-                int d1 = rnd.nextInt(6) + 1;
-                int d2 = rnd.nextInt(6) + 1;
+                int d1 = RND.nextInt(6) + 1;
+                int d2 = RND.nextInt(6) + 1;
                 TextUI.println("You rolled " + d1 + d2);
                 if (d1 * 10 + d2 == show) {
                     TextUI.println("You both rolled the same!");
