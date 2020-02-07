@@ -1,4 +1,4 @@
-package mayer;
+package meyer2;
 
 import java.util.Scanner;
 

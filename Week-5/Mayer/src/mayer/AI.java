@@ -8,22 +8,22 @@ import java.util.Random;
  */
 public class AI {
 
-    private static Random rnd = new Random();
+    private static final Random RND = new Random();
     private String name = "God";
     private int health = 6;
     private int roll;
     private int showToOtherPlayer;
 
-    void takeTurn() {
+    public void takeTurn() {
         TextUI.println("It's " + name + "'s turn, their health is " + health + "!");
-        int d1 = rnd.nextInt(6) + 1;
-        int d2 = rnd.nextInt(6) + 1;
+        int d1 = RND.nextInt(6) + 1;
+        int d2 = RND.nextInt(6) + 1;
         roll = d1 * 10 + d2;
-        int answer = rnd.nextInt(2);
+        int answer = RND.nextInt(2);
         if (answer == 0) {
             showToOtherPlayer = d1 * 10 + d2;
         } else {
-            int bluff = rnd.nextInt(6) + 1 * 10 + rnd.nextInt(6) + 1;
+            int bluff = RND.nextInt(6) + 1 * 10 + RND.nextInt(6) + 1;
             showToOtherPlayer = bluff;
         }
         for (int i = 0; i < 5; ++i) {
@@ -31,21 +31,21 @@ public class AI {
         }
     }
 
-    int turnChoice(String playername, int show, int playerroll) {
+    public int turnChoice(String playername, int show, int playerroll) {
         if (show != 0) {
             TextUI.println(name + " do you believe that " + playername + " rolled this?");
-            int answer = rnd.nextInt(2);
+            int answer = RND.nextInt(2);
             if (answer == 0) {
                 TextUI.println(name + ": Yes i do!");
-                int d1 = rnd.nextInt(6) + 1;
-                int d2 = rnd.nextInt(6) + 1;
+                int d1 = RND.nextInt(6) + 1;
+                int d2 = RND.nextInt(6) + 1;
                 TextUI.println(name + " rolled " + d1 + d2);
                 if (d1 * 10 + d2 == show) {
                     TextUI.println("You both rolled the same!");
                     return 0;
                 } else if (d1 == 1 && d2 == 2) {
                     TextUI.println("Meyer! " + name + " rolled higher than " + playername + ", who lose -1 health");
-                    return 1;
+                    return 2;
                 } else if (d1 == 1 && d2 == 3 && show != 12) {
                     TextUI.println("Lille-meyer! " + name + " rolled higher than " + playername + ", who lose -1 health");
                     return 1;

@@ -1,4 +1,4 @@
-package mayer;
+package meyer2;
 
 import java.util.Random;
 
@@ -6,45 +6,53 @@ import java.util.Random;
  *
  * @author Rasmus2
  */
-public class PlayerCtrl {
+public class Player extends PlayerCtrlImpl {
 
     private static final Random RND = new Random();
     private String name;
-    private int health = 6;
+    private int health = 2;
     private int roll;
     private int showToOtherPlayer;
 
+    public Player() {
+
+    }
+
+    @Override
     public void takeTurn() {
         String[] choices = {"show", "bluff"};
         TextUI.println("It's your turn " + name + ", your health is " + health + "! Press Enter to roll!");
         TextUI.getString();
         int d1 = RND.nextInt(6) + 1;
         int d2 = RND.nextInt(6) + 1;
-        roll = d1 * 10 + d2;
-        TextUI.println(name + " rolled " + d1 + " and " + d2 + ", that is: " + d1 + d2);
-        if (d1 == 1 && d2 == 2) {
+        if (d1 > d2) {
+            roll = d1 * 10 + d2;
+        } else {
+            roll = d2 * 10 + d1;
+        }
+        TextUI.println(name + " you rolled " + roll);
+        if (roll == 21) {
             TextUI.println("That is Meyer!");
-        } else if (d1 == 1 && d2 == 3) {
+        } else if (roll == 31) {
             TextUI.println("That is Lille-meyer!");
         } else if (d1 == d2) {
             TextUI.println("That is a pair of: " + d1 + d2);
         }
         int answer = TextUI.choice(choices);
         if (answer == 0) {
-            showToOtherPlayer = d1 * 10 + d2;
-            TextUI.println("You awnser with the true roll of: " + d1 + d2);
+            showToOtherPlayer = roll;
+            TextUI.println("You awnser with the true roll of: " + roll);
         } else {
             TextUI.println("Make your buff!");
             int bluff = TextUI.getInteger();
             showToOtherPlayer = bluff;
             TextUI.println("You awnser with a bluff of: " + bluff);
         }
-        for (int i = 0; i < 100; ++i) {
-            System.out.println();
-        }
     }
 
+    @Override
     public int turnChoice(String playerName, int show, int roll) {
+        int turnRoll;
         String[] choices = {"yes", "no"};
         if (show != 0) {
             TextUI.println(name + " do you believe that " + playerName + " rolled this?");
@@ -54,23 +62,28 @@ public class PlayerCtrl {
                 TextUI.getString();
                 int d1 = RND.nextInt(6) + 1;
                 int d2 = RND.nextInt(6) + 1;
-                TextUI.println("You rolled " + d1 + d2);
-                if (d1 * 10 + d2 == show) {
+                if (d1 > d2) {
+                    turnRoll = d1 * 10 + d2;
+                } else {
+                    turnRoll = d2 * 10 + d1;
+                }
+                TextUI.println("You rolled " + turnRoll);
+                if (turnRoll == show) {
                     TextUI.println("You both rolled the same!");
                     return 0;
-                } else if (d1 == 1 && d2 == 2) {
+                } else if (turnRoll == 21) {
                     TextUI.println("Meyer! You rolled higher than " + playerName + ", who lose -1 health");
                     return 2;
-                } else if (d1 == 1 && d2 == 3 && show != 12) {
+                } else if (turnRoll == 31 && show != 21) {
                     TextUI.println("Lille-meyer! You rolled higher than " + playerName + ", who lose -1 health");
                     return 1;
-                } else if (d1 == d2 && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1) && show != 12 && show != 13) {
+                } else if (d1 == d2 && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1) && show != 21 && show != 31) {
                     TextUI.println("A pair!, You rolled higher than " + playerName + ", who lose -1 health");
                     return 1;
-                } else if (d1 == d2 && String.valueOf(show).charAt(0) == String.valueOf(show).charAt(1) && d1 * 10 + d2 < show) {
+                } else if (d1 == d2 && String.valueOf(show).charAt(0) == String.valueOf(show).charAt(1) && turnRoll > show) {
                     TextUI.println("A pair!, You rolled higher than " + playerName + ", who lose -1 health");
                     return 1;
-                } else if (d1 * 10 + d2 > show && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1) && show != 12 && show != 13) {
+                } else if (turnRoll > show && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1) && show != 21 && show != 31) {
                     TextUI.println("You rolled higher than " + playerName + ", who lose -1 health");
                     return 1;
                 } else {
