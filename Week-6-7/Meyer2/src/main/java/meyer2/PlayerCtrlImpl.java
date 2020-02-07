@@ -13,23 +13,23 @@ import java.util.Random;
  * @author rasmu
  */
 public abstract class PlayerCtrlImpl implements PlayerCtrl {
-    
+
     private static final Random RND = new Random();
     private String name;
     private int health = 6;
     private int roll;
     private int showToOtherPlayer;
-    
+
     public PlayerCtrlImpl() {
-        
+
     }
-    
+
     @Override
     abstract public void takeTurn();
 
     @Override
     abstract public int turnChoice(String playerName, int show, int roll);
-    
+
     public String getName() {
         return name;
     }
@@ -65,5 +65,5 @@ public abstract class PlayerCtrlImpl implements PlayerCtrl {
     public void setShowToOtherPlayer(int showToOtherPlayer) {
         this.showToOtherPlayer = showToOtherPlayer;
     }
-    
+
 }

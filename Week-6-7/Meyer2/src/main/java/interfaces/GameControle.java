@@ -13,10 +13,12 @@ public interface GameControle {
 
     public void playGame();
 
+    public void isOut(int number);
+
     public void showIntro();
 
     public void gameFinished();
-    
+
     public void pageBreak(int sleep);
 
 }

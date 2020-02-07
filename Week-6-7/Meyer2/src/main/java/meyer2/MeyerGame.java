@@ -6,9 +6,9 @@ package meyer2;
  */
 public class MeyerGame {
 
-    private static final GameControleImpl gc = GameControleImpl.getInstance();
+    private static final GameControleImpl GC = GameControleImpl.getInstance();
 
     public static void main(String[] args) {
-        gc.playGame();
+        GC.playGame();
     }
 }

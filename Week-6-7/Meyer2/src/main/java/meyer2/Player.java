@@ -21,32 +21,17 @@ public class Player extends PlayerCtrlImpl {
     @Override
     public void takeTurn() {
         String[] choices = {"show", "bluff"};
-        TextUI.println("It's your turn " + name + ", your health is " + health + "! Press Enter to roll!");
-        TextUI.getString();
+        TextUI.itIsYouTurn(name, health);
         int d1 = RND.nextInt(6) + 1;
         int d2 = RND.nextInt(6) + 1;
-        if (d1 > d2) {
-            roll = d1 * 10 + d2;
-        } else {
-            roll = d2 * 10 + d1;
-        }
-        TextUI.println(name + " you rolled " + roll);
-        if (roll == 21) {
-            TextUI.println("That is Meyer!");
-        } else if (roll == 31) {
-            TextUI.println("That is Lille-meyer!");
-        } else if (d1 == d2) {
-            TextUI.println("That is a pair of: " + d1 + d2);
-        }
+        roll = PointUtil.rollSum(d1, d2);
+        TextUI.youRolled(name, roll, d1, d2);
         int answer = TextUI.choice(choices);
         if (answer == 0) {
             showToOtherPlayer = roll;
-            TextUI.println("You awnser with the true roll of: " + roll);
+            TextUI.answerTrue(showToOtherPlayer);
         } else {
-            TextUI.println("Make your buff!");
-            int bluff = TextUI.getInteger();
-            showToOtherPlayer = bluff;
-            TextUI.println("You awnser with a bluff of: " + bluff);
+            showToOtherPlayer = TextUI.answerBluff();
         }
     }
 
@@ -55,50 +40,28 @@ public class Player extends PlayerCtrlImpl {
         int turnRoll;
         String[] choices = {"yes", "no"};
         if (show != 0) {
-            TextUI.println(name + " do you believe that " + playerName + " rolled this?");
+            TextUI.doYouBelieve(name, playerName);
             int answer = TextUI.choice(choices);
             if (answer == 0) {
-                TextUI.println(name + " press Enter to roll!");
-                TextUI.getString();
+                TextUI.pressEnterToRoll(name);
                 int d1 = RND.nextInt(6) + 1;
                 int d2 = RND.nextInt(6) + 1;
-                if (d1 > d2) {
-                    turnRoll = d1 * 10 + d2;
-                } else {
-                    turnRoll = d2 * 10 + d1;
-                }
-                TextUI.println("You rolled " + turnRoll);
-                if (turnRoll == show) {
-                    TextUI.println("You both rolled the same!");
-                    return 0;
-                } else if (turnRoll == 21) {
-                    TextUI.println("Meyer! You rolled higher than " + playerName + ", who lose -1 health");
-                    return 2;
-                } else if (turnRoll == 31 && show != 21) {
-                    TextUI.println("Lille-meyer! You rolled higher than " + playerName + ", who lose -1 health");
-                    return 1;
-                } else if (d1 == d2 && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1) && show != 21 && show != 31) {
-                    TextUI.println("A pair!, You rolled higher than " + playerName + ", who lose -1 health");
-                    return 1;
-                } else if (d1 == d2 && String.valueOf(show).charAt(0) == String.valueOf(show).charAt(1) && turnRoll > show) {
-                    TextUI.println("A pair!, You rolled higher than " + playerName + ", who lose -1 health");
-                    return 1;
-                } else if (turnRoll > show && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1) && show != 21 && show != 31) {
-                    TextUI.println("You rolled higher than " + playerName + ", who lose -1 health");
-                    return 1;
-                } else {
-                    TextUI.println("You rolled lower than " + playerName + " who rolled " + show + ", and you lose -1 health");
+                turnRoll = PointUtil.rollSum(d1, d2);
+                TextUI.turnChoiceRoll(turnRoll);
+                int turnPointsYes = PointUtil.turnPointsYesChoice(turnRoll, show, name, playerName, d1, d2);
+                if (turnPointsYes == -1) {
                     health = health - 1;
                     return 0;
+                } else {
+                    return turnPointsYes;
                 }
             } else {
-                if (show == roll) {
-                    TextUI.println("You were incorrect. It was true and you lose -1 health");
+                int turnPointsNo = PointUtil.turnPointsNoChoice(roll, show, name, playerName);
+                if (turnPointsNo == -1) {
                     health = health - 1;
                     return 0;
                 } else {
-                    TextUI.println("You were correct. It was a bluff and " + playerName + " loses -1 health");
-                    return 1;
+                    return turnPointsNo;
                 }
             }
         } else {
@@ -106,38 +69,47 @@ public class Player extends PlayerCtrlImpl {
         }
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public int getHealth() {
         return health;
     }
 
+    @Override
     public void setHealth(int score) {
         this.health = score;
     }
 
+    @Override
     void init() {
         setName(TextUI.getString());
     }
 
+    @Override
     public int getRoll() {
         return roll;
     }
 
+    @Override
     public void setRoll(int roll) {
         this.roll = roll;
     }
 
+    @Override
     public int getShowToOtherPlayer() {
         return showToOtherPlayer;
     }
 
+    @Override
     public void setShowToOtherPlayer(int showToOtherPlayer) {
         this.showToOtherPlayer = showToOtherPlayer;
     }
