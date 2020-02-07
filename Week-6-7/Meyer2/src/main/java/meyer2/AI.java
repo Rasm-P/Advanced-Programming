@@ -6,7 +6,7 @@ import java.util.Random;
  *
  * @author Rasmus2
  */
-public class Player extends PlayerCtrlImpl {
+public class AI extends PlayerCtrlImpl {
 
     private static final Random RND = new Random();
     private String name;
@@ -14,7 +14,7 @@ public class Player extends PlayerCtrlImpl {
     private int roll;
     private int showToOtherPlayer;
 
-    public Player() {
+    public AI() {
 
     }
 

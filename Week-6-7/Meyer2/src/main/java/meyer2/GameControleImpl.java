@@ -91,10 +91,10 @@ public class GameControleImpl implements GameControle {
             TextUI.howManyAi();
             int amount = TextUI.getInteger();
             for (int i = 1; i < amount + 1; i++) {
-                Player player = new Player();
+                AI ai = new AI();
                 TextUI.whatAiName(i);
-                player.init();
-                playerList.add(player);
+                ai.init();
+                playerList.add(ai);
             }
         }
     }

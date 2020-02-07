@@ -5,4 +5,5 @@ meyer2\MeyerGame.class
 meyer2\TextUI.class
 meyer2\PlayerCtrlImpl.class
 meyer2\Player.class
+meyer2\AI.class
 meyer2\GameControleImpl.class
