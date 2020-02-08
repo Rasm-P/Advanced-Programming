@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import meyer2.PlayerCtrlImpl;
+
 /**
  *
  * @author rasmu
@@ -12,6 +14,8 @@ package interfaces;
 public interface GameControle {
 
     public void playGame();
+
+    public void managePoints(PlayerCtrlImpl currentPlayer, PlayerCtrlImpl nextPlayers);
 
     public void isOut(int number);
 

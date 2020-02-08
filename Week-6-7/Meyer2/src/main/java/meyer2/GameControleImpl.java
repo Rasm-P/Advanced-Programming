@@ -40,23 +40,27 @@ public class GameControleImpl implements GameControle {
             pageBreak(0);
             TextUI.playerSaysTheyRolled(playerList.get(num));
             if (num == playerList.size() - 1) {
-                playerList.get(num).setHealth(playerList.get(num).getHealth() - playerList.get(0).turnChoice(playerList.get(num).getName(), playerList.get(num).getShowToOtherPlayer(), playerList.get(num).getRoll()));
+                managePoints(playerList.get(num), playerList.get(0));
                 isOut(num);
                 isOut(0);
                 num = 0;
             } else {
-                playerList.get(num).setHealth(playerList.get(num).getHealth() - playerList.get(num + 1).turnChoice(playerList.get(num).getName(), playerList.get(num).getShowToOtherPlayer(), playerList.get(num).getRoll()));
+                managePoints(playerList.get(num), playerList.get(num + 1));
                 isOut(num);
                 isOut(num + 1);
                 num += 1;
             }
-
             pageBreak(5);
             if (playerList.size() == 1) {
                 gameFinished();
                 break;
             }
         }
+    }
+
+    @Override
+    public void managePoints(PlayerCtrlImpl currentPlayer, PlayerCtrlImpl nextPlayers) {
+        currentPlayer.setHealth(currentPlayer.getHealth() - nextPlayers.turnChoice(currentPlayer.getName(), currentPlayer.getShowToOtherPlayer(), currentPlayer.getRoll()));
     }
 
     @Override
