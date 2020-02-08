@@ -20,30 +20,27 @@ public class AI extends PlayerCtrlImpl {
 
     @Override
     public void takeTurn() {
-        String[] choices = {"show", "bluff"};
-        TextUI.itIsYouTurn(name, health);
+        TextUI.itIsPlayerTurn(name, health);
         int d1 = RND.nextInt(6) + 1;
         int d2 = RND.nextInt(6) + 1;
         roll = PointUtil.rollSum(d1, d2);
-        TextUI.youRolled(name, roll, d1, d2);
-        int answer = TextUI.choice(choices);
+        int answer = RND.nextInt(2);
         if (answer == 0) {
             showToOtherPlayer = roll;
-            TextUI.answerTrue(showToOtherPlayer);
         } else {
-            showToOtherPlayer = TextUI.answerBluff();
+            int bluff = PointUtil.rollSum(RND.nextInt(6) + 1, RND.nextInt(6) + 1);
+            showToOtherPlayer = bluff;
         }
     }
 
     @Override
     public int turnChoice(String playerName, int show, int roll) {
         int turnRoll;
-        String[] choices = {"yes", "no"};
         if (show != 0) {
             TextUI.doYouBelieve(name, playerName);
-            int answer = TextUI.choice(choices);
+            int answer = RND.nextInt(2);
             if (answer == 0) {
-                TextUI.pressEnterToRoll(name);
+                TextUI.yesIDoBelieve(name);
                 int d1 = RND.nextInt(6) + 1;
                 int d2 = RND.nextInt(6) + 1;
                 turnRoll = PointUtil.rollSum(d1, d2);
@@ -56,6 +53,7 @@ public class AI extends PlayerCtrlImpl {
                     return turnPointsYes;
                 }
             } else {
+                TextUI.noIDoBelieve(name);
                 int turnPointsNo = PointUtil.turnPointsNoChoice(roll, show, name, playerName);
                 if (turnPointsNo == -1) {
                     health = health - 1;

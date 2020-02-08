@@ -149,4 +149,16 @@ public class TextUI {
         println(name + " was correct. It was a bluff and " + playerName + " loses -1 health");
     }
 
+    static void itIsPlayerTurn(String name, int health) {
+        println("It's " + name + "'s turn, their health is " + health + "!");
+    }
+
+    static void yesIDoBelieve(String name) {
+        println(name + ": Yes i do!");
+    }
+
+    static void noIDoBelieve(String name) {
+        println(name + ": No i dont, it is a bluff!");
+    }
+
 }

@@ -34,7 +34,6 @@ public class GameControleImpl implements GameControle {
     @Override
     public void playGame() {
         showIntro();
-        num = RND.nextInt(playerList.size());
         while (true) {
             pageBreak(0);
             playerList.get(num).takeTurn();
@@ -87,7 +86,12 @@ public class GameControleImpl implements GameControle {
                 player.init();
                 playerList.add(player);
             }
+            num = RND.nextInt(playerList.size());
         } else {
+            Player player = new Player();
+            TextUI.whatPlayerName(1);
+            player.init();
+            playerList.add(player);
             TextUI.howManyAi();
             int amount = TextUI.getInteger();
             for (int i = 1; i < amount + 1; i++) {
@@ -96,6 +100,7 @@ public class GameControleImpl implements GameControle {
                 ai.init();
                 playerList.add(ai);
             }
+            num = 0;
         }
     }
 
