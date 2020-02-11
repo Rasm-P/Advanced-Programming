@@ -6,9 +6,12 @@
 package meyer2;
 
 import interfaces.GameControle;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -79,7 +82,7 @@ public class GameControleImpl implements GameControle {
     @Override
     public void showIntro() {
         TextUI.welcome();
-        String[] choices = {"PVP", "AI"};
+        String[] choices = {"PVP", "AI", "Online"};
         int answer = TextUI.choice(choices);
         if (answer == 0) {
             TextUI.howManyPlayers();
@@ -91,7 +94,7 @@ public class GameControleImpl implements GameControle {
                 playerList.add(player);
             }
             num = RND.nextInt(playerList.size());
-        } else {
+        } else if (answer == 1) {
             Player player = new Player();
             TextUI.whatPlayerName(1);
             player.init();
@@ -104,8 +107,24 @@ public class GameControleImpl implements GameControle {
                 ai.init();
                 playerList.add(ai);
             }
-            num = 0;
+        } else {
+            EchoMultiServer server = new EchoMultiServer();
+            try {
+                server.start(5555);
+                TextUI.howManyPlayers();
+                int amount = TextUI.getInteger();
+                for (int i = 1; i < amount + 1; i++) {
+                    OnlinePlayer player = new OnlinePlayer(server.newClientHandler());
+                    TextUI.whatPlayerName(i);
+                    player.init();
+                    playerList.add(player);
+                }
+                num = RND.nextInt(playerList.size());
+            } catch (IOException ex) {
+                Logger.getLogger(GameControleImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        num = 0;
     }
 
     @Override

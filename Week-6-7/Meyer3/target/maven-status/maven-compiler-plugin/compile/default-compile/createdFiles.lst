@@ -3,7 +3,10 @@ interfaces\GameControle.class
 interfaces\PlayerCtrl.class
 meyer2\MeyerGame.class
 meyer2\TextUI.class
+TCPstart\GreetServer.class
 meyer2\PlayerCtrlImpl.class
+TCPstart\GreetClient.class
 meyer2\Player.class
+TCPstart\EchoServer.class
 meyer2\AI.class
 meyer2\GameControleImpl.class
