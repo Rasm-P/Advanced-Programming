@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package meyer2;
+package meyer3;
 
 import interfaces.GameControle;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -79,7 +81,7 @@ public class GameControleImpl implements GameControle {
     @Override
     public void showIntro() {
         TextUI.welcome();
-        String[] choices = {"PVP", "AI", "Online"};
+        String[] choices = {"PVP", "AI", "Online Host", "Online Client"};
         int answer = TextUI.choice(choices);
         if (answer == 0) {
             TextUI.howManyPlayers();
@@ -104,7 +106,7 @@ public class GameControleImpl implements GameControle {
                 ai.init();
                 playerList.add(ai);
             }
-        } else {
+        } else if (answer == 2) {
             EchoMultiServer server = new EchoMultiServer();
             try {
                 Player p = new Player();
@@ -122,6 +124,13 @@ public class GameControleImpl implements GameControle {
                     TextUI.println(player.getEchoClientHandler().sendMessage("Hello " + player.getName() + ". You are connected and ready to play!"));
                 }
                 num = RND.nextInt(playerList.size());
+            } catch (IOException ex) {
+                TextUI.println(ex.getMessage());
+            }
+        } else {
+            try {
+                ClientGameControle GC = ClientGameControle.getInstance();
+                GC.playGame();
             } catch (IOException ex) {
                 TextUI.println(ex.getMessage());
             }

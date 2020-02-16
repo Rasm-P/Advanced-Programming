@@ -1,6 +1,5 @@
 package meyerClient;
 
-import meyer2.*;
 import java.util.Scanner;
 
 /**

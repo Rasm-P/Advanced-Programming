@@ -5,7 +5,6 @@
  */
 package meyerClient;
 
-import meyer2.*;
 import interfaces.PlayerCtrl;
 import java.util.Random;
 

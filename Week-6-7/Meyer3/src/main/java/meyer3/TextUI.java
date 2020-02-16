@@ -1,4 +1,4 @@
-package meyer2;
+package meyer3;
 
 import java.io.IOException;
 import java.util.Scanner;

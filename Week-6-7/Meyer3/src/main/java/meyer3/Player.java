@@ -1,4 +1,4 @@
-package meyer2;
+package meyer3;
 
 import java.util.Random;
 
@@ -6,42 +6,45 @@ import java.util.Random;
  *
  * @author Rasmus2
  */
-public class AI extends PlayerCtrlImpl {
+public class Player extends PlayerCtrlImpl {
 
     private static final Random RND = new Random();
     private String name;
-    private int health = 6;
+    private int health = 1;
     private int roll;
     private int showToOtherPlayer;
 
-    public AI() {
+    public Player() {
 
     }
 
     @Override
     public void takeTurn() {
-        TextUI.itIsPlayerTurn(name, health);
+        String[] choices = {"show", "bluff"};
+        TextUI.itIsYouTurn(name, health);
         int d1 = RND.nextInt(6) + 1;
         int d2 = RND.nextInt(6) + 1;
         roll = PointUtil.rollSum(d1, d2);
-        int answer = RND.nextInt(2);
+        TextUI.youRolled(name, roll, d1, d2);
+        int answer = TextUI.choice(choices);
         if (answer == 0) {
             showToOtherPlayer = roll;
+            TextUI.answerTrue(showToOtherPlayer);
         } else {
-            int bluff = PointUtil.rollSum(RND.nextInt(6) + 1, RND.nextInt(6) + 1);
-            showToOtherPlayer = bluff;
+            showToOtherPlayer = TextUI.answerBluff();
         }
     }
 
     @Override
     public int turnChoice(String playerName, int show, int roll) {
         int turnRoll;
-        TextUI.playerSaysTheyRolled(playerName, show);
+        String[] choices = {"yes", "no"};
+        TextUI.playerSaysTheyRolled(playerName,show);
         if (show != 0) {
             TextUI.doYouBelieve(name, playerName);
-            int answer = RND.nextInt(2);
+            int answer = TextUI.choice(choices);
             if (answer == 0) {
-                TextUI.yesIDoBelieve(name);
+                TextUI.pressEnterToRoll(name);
                 int d1 = RND.nextInt(6) + 1;
                 int d2 = RND.nextInt(6) + 1;
                 turnRoll = PointUtil.rollSum(d1, d2);
@@ -54,7 +57,6 @@ public class AI extends PlayerCtrlImpl {
                     return turnPointsYes;
                 }
             } else {
-                TextUI.noIDoBelieve(name);
                 int turnPointsNo = PointUtil.turnPointsNoChoice(roll, show, name, playerName);
                 if (turnPointsNo == -1) {
                     health = health - 1;
@@ -67,12 +69,12 @@ public class AI extends PlayerCtrlImpl {
             return 0;
         }
     }
-
+    
     @Override
     public void isOut() {
-        TextUI.playerIsOut(name);
+         TextUI.playerIsOut(name);
     }
-
+    
     @Override
     public void gameWon() {
         TextUI.gameWinner(name, health);

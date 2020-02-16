@@ -5,8 +5,6 @@
  */
 package meyerClient;
 
-import meyer2.*;
-
 /**
  *
  * @author rasmu

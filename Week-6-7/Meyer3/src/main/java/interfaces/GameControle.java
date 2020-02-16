@@ -5,7 +5,7 @@
  */
 package interfaces;
 
-import meyer2.PlayerCtrlImpl;
+import meyer3.PlayerCtrlImpl;
 
 /**
  *

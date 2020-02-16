@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package meyer2;
+package meyer3;
 
 import java.net.*;
 import java.io.*;
@@ -28,10 +28,5 @@ public class EchoMultiServer {
         EchoClientHandler e = new EchoClientHandler(serverSocket.accept());
         e.start();
         return e;
-    }
-
-    public static void main(String[] args) throws IOException {
-        EchoMultiServer server = new EchoMultiServer();
-        server.start(5555);
     }
 }

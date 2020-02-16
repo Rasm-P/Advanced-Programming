@@ -1,7 +1,6 @@
 package meyerClient;
 
 import java.io.IOException;
-import meyer2.*;
 
 /**
  *

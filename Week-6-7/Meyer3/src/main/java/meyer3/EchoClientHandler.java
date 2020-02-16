@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package meyer2;
+package meyer3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,14 +46,5 @@ public class EchoClientHandler extends Thread {
         in.close();
         out.close();
         clientSocket.close();
-    }
-
-    public static void main(String[] args) throws IOException {
-        EchoMultiServer server = new EchoMultiServer();
-        server.start(5555);
-        EchoClientHandler clientHandler = server.newClientHandler();
-        while (true) {
-            clientHandler.sendMessage("here!");
-        }
     }
 }

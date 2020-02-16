@@ -1,8 +1,7 @@
-package meyer2;
+package meyer3;
 
 import meyerClient.*;
 import java.io.IOException;
-import meyer2.*;
 
 /**
  *
