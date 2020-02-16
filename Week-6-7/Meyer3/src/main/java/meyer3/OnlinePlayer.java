@@ -2,8 +2,6 @@ package meyer3;
 
 import java.io.IOException;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -27,40 +25,17 @@ public class OnlinePlayer extends PlayerCtrlImpl {
     public void takeTurn() {
         try {
             String[] choices = {"show", "bluff"};
-
-            echoClientHandler.sendMessage("It's your turn " + name + ", your health is " + health + "! Press Enter to roll!");
-            echoClientHandler.sendMessage("...");
-            echoClientHandler.readMessage();
-            //TextUI.itIsYouTurn(name, health);
-
+            TextUI.itIsYouTurnOnline(name, health, echoClientHandler);
             int d1 = RND.nextInt(6) + 1;
             int d2 = RND.nextInt(6) + 1;
             roll = PointUtil.rollSum(d1, d2);
-
-            echoClientHandler.sendMessage(name + " you rolled " + roll);
-            if (roll == 21) {
-                echoClientHandler.sendMessage("That is Meyer!");
-            } else if (roll == 31) {
-                echoClientHandler.sendMessage("That is Lille-meyer!");
-            } else if (d1 == d2) {
-                echoClientHandler.sendMessage("That is a pair of: " + d1 + d2);
-            }
-            //TextUI.youRolled(name, roll, d1, d2);
-
+            TextUI.youRolledOnline(name, roll, d1, d2, echoClientHandler);
             int answer = TextUI.choiceOnline(choices, echoClientHandler);
-            //int answer = TextUI.choice(choices);
-
             if (answer == 0) {
                 showToOtherPlayer = roll;
-
-                echoClientHandler.sendMessage("You awnser with the true roll of: " + roll);
-                //TextUI.answerTrue(showToOtherPlayer);
-
+                TextUI.answerTrueOnline(showToOtherPlayer, echoClientHandler);
             } else {
-
                 showToOtherPlayer = TextUI.answerBluffOnline(echoClientHandler);
-                //showToOtherPlayer = TextUI.answerBluff();
-
             }
         } catch (IOException ex) {
             TextUI.println(ex.getMessage());
@@ -71,33 +46,17 @@ public class OnlinePlayer extends PlayerCtrlImpl {
     public int turnChoice(String playerName, int show, int roll) {
         int turnRoll;
         String[] choices = {"yes", "no"};
-
-        echoClientHandler.sendMessage(playerName + " says they rolled " + show);
-        //TextUI.playerSaysTheyRolled(playerName, show);
-
+        TextUI.playerSaysTheyRolledOnline(playerName, show, echoClientHandler);
         if (show != 0) {
-
             try {
-                echoClientHandler.sendMessage(name + " do you believe that " + playerName + " rolled this?");
-                //TextUI.doYouBelieve(name, playerName);
-
+                TextUI.doYouBelieveOnline(name, playerName, echoClientHandler);
                 int answer = TextUI.choiceOnline(choices, echoClientHandler);
-                //int answer = TextUI.choice(choices);
-
                 if (answer == 0) {
-
-                    echoClientHandler.sendMessage(name + " press Enter to roll!");
-                    echoClientHandler.sendMessage("...");
-                    echoClientHandler.readMessage();
-                    //TextUI.pressEnterToRoll(name);
-
+                    TextUI.pressEnterToRollOnline(name, echoClientHandler);
                     int d1 = RND.nextInt(6) + 1;
                     int d2 = RND.nextInt(6) + 1;
                     turnRoll = PointUtil.rollSum(d1, d2);
-
-                    echoClientHandler.sendMessage(name + " rolled " + turnRoll);
-                    //TextUI.turnChoiceRoll(name, turnRoll);
-
+                    TextUI.turnChoiceRollOnline(name, turnRoll, echoClientHandler);
                     int turnPointsYes = PointUtil.turnPointsYesChoiceOnline(turnRoll, show, name, playerName, d1, d2, echoClientHandler);
                     if (turnPointsYes == -1) {
                         health = health - 1;
@@ -124,7 +83,7 @@ public class OnlinePlayer extends PlayerCtrlImpl {
     @Override
     public void isOut() {
         try {
-            TextUI.println(echoClientHandler.sendMessage("Player " + name + " hit 0 health, and is out!"));
+            TextUI.isOutMessage(name, echoClientHandler);
             echoClientHandler.closeConnection();
         } catch (IOException ex) {
             TextUI.println(ex.getMessage());
@@ -133,7 +92,7 @@ public class OnlinePlayer extends PlayerCtrlImpl {
 
     @Override
     public void gameWon() {
-        TextUI.println(echoClientHandler.sendMessage("Game over! The winner is " + name + " with " + health + " health!"));
+        TextUI.gameWonMessage(name, health, echoClientHandler);
     }
 
     @Override

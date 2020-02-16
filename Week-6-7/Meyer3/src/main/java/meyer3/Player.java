@@ -39,7 +39,7 @@ public class Player extends PlayerCtrlImpl {
     public int turnChoice(String playerName, int show, int roll) {
         int turnRoll;
         String[] choices = {"yes", "no"};
-        TextUI.playerSaysTheyRolled(playerName,show);
+        TextUI.playerSaysTheyRolled(playerName, show);
         if (show != 0) {
             TextUI.doYouBelieve(name, playerName);
             int answer = TextUI.choice(choices);
@@ -69,12 +69,12 @@ public class Player extends PlayerCtrlImpl {
             return 0;
         }
     }
-    
+
     @Override
     public void isOut() {
-         TextUI.playerIsOut(name);
+        TextUI.playerIsOut(name);
     }
-    
+
     @Override
     public void gameWon() {
         TextUI.gameWinner(name, health);

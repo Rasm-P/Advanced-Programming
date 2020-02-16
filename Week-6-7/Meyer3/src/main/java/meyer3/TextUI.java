@@ -33,10 +33,10 @@ public class TextUI {
             }
         }
     }
-    
+
     public static int getIntegerOnline(EchoClientHandler eco) throws IOException {
         eco.sendMessage("...");
-    while (true) {
+        while (true) {
             String sNum = eco.readMessage();
             try {
                 return Integer.parseInt(sNum);
@@ -128,7 +128,7 @@ public class TextUI {
         TextUI.println("You awnser with a bluff of: " + bluff);
         return bluff;
     }
-    
+
     static int answerBluffOnline(EchoClientHandler eco) throws IOException {
         eco.sendMessage("Make your buff!");
         int bluff = TextUI.getIntegerOnline(eco);
@@ -191,6 +191,61 @@ public class TextUI {
 
     static void noIDoBelieve(String name) {
         println(name + ": No i dont, it is a bluff!");
+    }
+
+    static void enterIp() {
+        println("Please enter host IP:");
+    }
+
+    static void whatIsClientName() {
+        println("What's your name?");
+    }
+
+    static void itIsYouTurnOnline(String name, int health, EchoClientHandler echoClientHandler) throws IOException {
+        echoClientHandler.sendMessage("It's your turn " + name + ", your health is " + health + "! Press Enter to roll!");
+        echoClientHandler.sendMessage("...");
+        echoClientHandler.readMessage();
+    }
+
+    static void youRolledOnline(String name, int roll, int d1, int d2, EchoClientHandler echoClientHandler) {
+        echoClientHandler.sendMessage(name + " you rolled " + roll);
+        if (roll == 21) {
+            echoClientHandler.sendMessage("That is Meyer!");
+        } else if (roll == 31) {
+            echoClientHandler.sendMessage("That is Lille-meyer!");
+        } else if (d1 == d2) {
+            echoClientHandler.sendMessage("That is a pair of: " + d1 + d2);
+        }
+    }
+
+    static void answerTrueOnline(int showToOtherPlayer, EchoClientHandler echoClientHandler) {
+        echoClientHandler.sendMessage("You awnser with the true roll of: " + showToOtherPlayer);
+    }
+
+    static void playerSaysTheyRolledOnline(String playerName, int show, EchoClientHandler echoClientHandler) {
+        echoClientHandler.sendMessage(playerName + " says they rolled " + show);
+    }
+
+    static void doYouBelieveOnline(String name, String playerName, EchoClientHandler echoClientHandler) {
+        echoClientHandler.sendMessage(name + " do you believe that " + playerName + " rolled this?");
+    }
+
+    static void pressEnterToRollOnline(String name, EchoClientHandler echoClientHandler) throws IOException {
+        echoClientHandler.sendMessage(name + " press Enter to roll!");
+        echoClientHandler.sendMessage("...");
+        echoClientHandler.readMessage();
+    }
+
+    static void turnChoiceRollOnline(String name, int turnRoll, EchoClientHandler echoClientHandler) {
+        echoClientHandler.sendMessage(name + " rolled " + turnRoll);
+    }
+
+    static void isOutMessage(String name, EchoClientHandler echoClientHandler) {
+        println(echoClientHandler.sendMessage("Player " + name + " hit 0 health, and is out!"));
+    }
+
+    static void gameWonMessage(String name, int health, EchoClientHandler echoClientHandler) {
+        println(echoClientHandler.sendMessage("Game over! The winner is " + name + " with " + health + " health!"));
     }
 
 }
