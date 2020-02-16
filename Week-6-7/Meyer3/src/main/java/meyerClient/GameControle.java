@@ -30,15 +30,22 @@ public class GameControle {
     public void playGame() throws IOException {
         try {
             int port = 5555;
-            String IP = "192.168.1.6";
+            String IP;
+            //"192.168.1.6"
+            TextUI.println("Please enter host IP:");
+            IP = TextUI.getString();
             client.startConnection(IP, port);
             Player player = new Player();
-            TextUI.println("what's your name?");
+            TextUI.println("What's your name?");
             player.init();
             client.sendMessage(player.getName());
             while (client.isConnected()) {
-                if (client.readMessage() != null) {
-                    TextUI.println(client.readMessage());
+                String message = client.readMessage();
+                if (message != null) {
+                    TextUI.println(message);
+                    if ("...".equals(message)) {
+                        client.sendMessage(TextUI.getString());
+                    }
                 }
             }
             client.stopConnection();
