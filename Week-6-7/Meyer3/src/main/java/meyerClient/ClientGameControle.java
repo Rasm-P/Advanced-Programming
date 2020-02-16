@@ -6,23 +6,22 @@
 package meyerClient;
 
 import java.io.IOException;
-import java.net.SocketException;
 
 /**
  *
  * @author rasmu
  */
-public class GameControle {
+public class ClientGameControle {
 
-    private static GameControle instance;
+    private static ClientGameControle instance;
     GreetClient client = new GreetClient();
 
-    private GameControle() {
+    private ClientGameControle() {
     }
 
-    public static GameControle getInstance() {
+    public static ClientGameControle getInstance() {
         if (instance == null) {
-            instance = new GameControle();
+            instance = new ClientGameControle();
         }
         return instance;
     }
@@ -35,7 +34,7 @@ public class GameControle {
             TextUI.println("Please enter host IP:");
             IP = TextUI.getString();
             client.startConnection(IP, port);
-            Player player = new Player();
+            ClientPlayer player = new ClientPlayer();
             TextUI.println("What's your name?");
             player.init();
             client.sendMessage(player.getName());

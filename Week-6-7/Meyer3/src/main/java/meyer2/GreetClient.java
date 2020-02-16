@@ -1,5 +1,6 @@
-package meyerClient;
+package meyer2;
 
+import meyerClient.*;
 import TCPstart.*;
 import java.net.*;
 import java.io.*;

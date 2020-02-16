@@ -1,5 +1,6 @@
-package meyerClient;
+package meyer2;
 
+import meyerClient.*;
 import java.io.IOException;
 import meyer2.*;
 
