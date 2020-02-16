@@ -35,7 +35,7 @@ public class GameControleImpl implements GameControle {
     @Override
     public void playGame() {
         showIntro();
-        while (true && num > 0) {
+        while (true) {
             pageBreak(0);
             playerList.get(num).takeTurn();
             pageBreak(0);
@@ -131,7 +131,7 @@ public class GameControleImpl implements GameControle {
                     TextUI.println(ex.getMessage());
                 }
                 break;
-            default:
+            case 3:
                 try {
                     ClientGameControle GC = ClientGameControle.getInstance();
                     GC.playGame();
@@ -140,7 +140,6 @@ public class GameControleImpl implements GameControle {
                 }
                 break;
         }
-        num = 0;
     }
 
     @Override
