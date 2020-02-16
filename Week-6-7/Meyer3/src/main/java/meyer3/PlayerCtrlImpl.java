@@ -6,7 +6,6 @@
 package meyer3;
 
 import interfaces.PlayerCtrl;
-import java.util.Random;
 
 /**
  *
@@ -14,7 +13,6 @@ import java.util.Random;
  */
 public abstract class PlayerCtrlImpl implements PlayerCtrl {
 
-    private static final Random RND = new Random();
     private String name;
     private int health = 6;
     private int roll;

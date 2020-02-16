@@ -30,12 +30,12 @@ public class ClientGameControle {
         try {
             int port = 5555;
             String IP;
-            //"192.168.1.6"
-            TextUI.println("Please enter host IP:");
+            //Eks."192.168.1.6"
+            TextUI.enterIp();
             IP = TextUI.getString();
             client.startConnection(IP, port);
             Player player = new Player();
-            TextUI.println("What's your name?");
+            TextUI.whatIsClientName();
             player.init();
             client.sendMessage(player.getName());
             while (client.isConnected()) {

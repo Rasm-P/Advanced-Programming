@@ -18,8 +18,8 @@ import java.net.Socket;
 public class EchoClientHandler extends Thread {
 
     private final Socket clientSocket;
-    private PrintWriter out;
-    private BufferedReader in;
+    private final PrintWriter out;
+    private final BufferedReader in;
 
     public EchoClientHandler(Socket socket) throws IOException {
         this.clientSocket = socket;
@@ -30,7 +30,7 @@ public class EchoClientHandler extends Thread {
 
     public String readMessage() throws IOException {
         String input = "";
-        while (input == "" || input == null) {
+        while ("".equals(input) || input == null) {
             input = in.readLine();
         }
         return input;
