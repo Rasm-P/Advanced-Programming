@@ -35,7 +35,7 @@ public class GameControleImpl implements GameControle {
     @Override
     public void playGame() {
         showIntro();
-        while (true) {
+        while (num != 0) {
             pageBreak(0);
             playerList.get(num).takeTurn();
             pageBreak(0);
