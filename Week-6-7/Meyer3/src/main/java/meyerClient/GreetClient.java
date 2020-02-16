@@ -1,5 +1,6 @@
-package TCPstart;
+package meyerClient;
 
+import TCPstart.*;
 import java.net.*;
 import java.io.*;
 
@@ -23,17 +24,26 @@ public class GreetClient {
         out = new PrintWriter(serverSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
     }
+    
+    public String readMessage() throws IOException{
+        String resp = in.readLine();
+        return resp;
+    }
  
     public String sendMessage(String msg) throws IOException {
         out.println(msg);
-        String resp = in.readLine();
-        return resp;
+        return msg;
+    }
+    
+    public Boolean isConnected() {
+        return serverSocket.isConnected();
     }
  
     public void stopConnection() throws IOException {
         in.close();
         out.close();
         serverSocket.close();
+        TextUI.println("Connection has been stopped!");
     }
     
     public static void main(String[] args) throws IOException {     

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\rasmu\Desktop\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\AI.java
 C:\Users\rasmu\Desktop\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\EchoMultiServer.java
 C:\Users\rasmu\Desktop\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\GameControleImpl.java
@@ -14,3 +15,21 @@ C:\Users\rasmu\Desktop\Advanced-Programming\Week-6-7\Meyer3\src\main\java\interf
 C:\Users\rasmu\Desktop\Advanced-Programming\Week-6-7\Meyer3\src\main\java\TCPstart\EchoServer.java
 C:\Users\rasmu\Desktop\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\MeyerGame.java
 C:\Users\rasmu\Desktop\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\OnlinePlayer.java
+=======
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\TextUI.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\EchoMultiServer.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\OnlinePlayer.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\MeyerGame.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\Player.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\PlayerCtrlImpl.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\interfaces\GameControle.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\TCPstart\EchoServer.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\AI.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\interfaces\PlayerCtrl.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\GameControleImpl.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\TCPstart\GreetClient.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\EchoClientHandler.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\TCPstart\GreetServer.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\meyer2\PointUtil.java
+C:\Users\rasmu\Documents\Github\Advanced-Programming\Week-6-7\Meyer3\src\main\java\TCPstart\EchoMultiServer.java
+>>>>>>> f067012d92b88d2dffcf5676d4435f97dc260952

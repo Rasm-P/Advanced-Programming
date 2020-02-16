@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: TCPstart.GreetServerTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.06 sec
+=======
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.167 sec
+>>>>>>> f067012d92b88d2dffcf5676d4435f97dc260952
