@@ -41,12 +41,44 @@ public class PointUtil {
         }
     }
 
+    protected static int turnPointsYesChoiceOnline(int turnRoll, int show, String name, String playerName, int d1, int d2, EchoClientHandler eco) {
+        if (turnRoll == show) {
+            eco.sendMessage("You both rolled the same!");
+            return 0;
+        } else if (turnRoll == 21) {
+            eco.sendMessage("Meyer! " + name + " rolled higher than " + playerName + ", who lose -1 health");
+            return 2;
+        } else if (turnRoll == 31 && show != 21) {
+            eco.sendMessage("Lille-meyer! " + name + " rolled higher than " + playerName + ", who lose -1 health");
+            return 1;
+        } else if ((d1 == d2 && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1) && show != 21 && show != 31) || (d1 == d2 && String.valueOf(show).charAt(0) == String.valueOf(show).charAt(1) && turnRoll > show)) {
+            eco.sendMessage("A pair!, " + name + " rolled higher than " + playerName + ", who lose -1 health");
+            return 1;
+        } else if (turnRoll > show && String.valueOf(show).charAt(0) != String.valueOf(show).charAt(1) && show != 21 && show != 31) {
+            eco.sendMessage("" + name + " rolled higher than " + playerName + ", who lose -1 health");
+            return 1;
+        } else {
+            eco.sendMessage("" + name + " rolled lower than " + playerName + " who rolled " + show + ", and " + name + " lose -1 health");
+            return -1;
+        }
+    }
+
     protected static int turnPointsNoChoice(int roll, int show, String name, String playerName) {
         if (show == roll) {
             TextUI.wasIncorrect(name);
             return -1;
         } else {
             TextUI.wasCorrect(name, playerName);
+            return 1;
+        }
+    }
+
+    protected static int turnPointsNoChoiceOnline(int roll, int show, String name, String playerName, EchoClientHandler eco) {
+        if (show == roll) {
+            eco.sendMessage(name + " was incorrect. It was true and " + name + " lose -1 health");
+            return -1;
+        } else {
+            eco.sendMessage(name + " was correct. It was a bluff and " + playerName + " loses -1 health");
             return 1;
         }
     }

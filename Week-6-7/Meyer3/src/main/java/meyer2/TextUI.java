@@ -1,5 +1,6 @@
 package meyer2;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -32,6 +33,19 @@ public class TextUI {
             }
         }
     }
+    
+    public static int getIntegerOnline(EchoClientHandler eco) throws IOException {
+        eco.sendMessage("...");
+    while (true) {
+            String sNum = eco.readMessage();
+            try {
+                return Integer.parseInt(sNum);
+            } catch (NumberFormatException e) {
+                eco.sendMessage("Please enter an integer! \n: ");
+                eco.sendMessage("...");
+            }
+        }
+    }
 
     public static int choice(String[] choices) {
         if (choices == null || choices.length == 0) {
@@ -40,13 +54,24 @@ public class TextUI {
         for (int i = 0; i < choices.length; ++i) {
             println("press " + i + " to " + choices[i]);
         }
-        println("\nPlease choose: ");
+        println("Please choose: ");
         return getInteger();
     }
 
-    public static void gameWinner(PlayerCtrlImpl winner) {
+    public static int choiceOnline(String[] choices, EchoClientHandler eco) throws IOException {
+        if (choices == null || choices.length == 0) {
+            throw new IllegalArgumentException();
+        }
+        for (int i = 0; i < choices.length; ++i) {
+            eco.sendMessage("press " + i + " to " + choices[i]);
+        }
+        eco.sendMessage("Please choose: ");
+        return getIntegerOnline(eco);
+    }
+
+    public static void gameWinner(String name, int health) {
         println("Game over!");
-        println("The winner is " + winner.getName() + " with " + winner.getHealth() + " health!");
+        println("The winner is " + name + " with " + health + " health!");
     }
 
     static void whatAiName(int i) {
@@ -69,12 +94,12 @@ public class TextUI {
         println("Welcome to the game");
     }
 
-    static void playerIsOut(PlayerCtrlImpl player) {
-        println("Player " + player.getName() + " hit 0 health, and is out!");
+    static void playerIsOut(String name) {
+        println("Player " + name + " hit 0 health, and is out!");
     }
 
-    static void playerSaysTheyRolled(PlayerCtrlImpl player) {
-        println(player.getName() + " says they rolled " + player.getShowToOtherPlayer());
+    static void playerSaysTheyRolled(String playerName, int show) {
+        println(playerName + " says they rolled " + show);
     }
 
     static void itIsYouTurn(String name, int health) {
@@ -103,6 +128,13 @@ public class TextUI {
         TextUI.println("You awnser with a bluff of: " + bluff);
         return bluff;
     }
+    
+    static int answerBluffOnline(EchoClientHandler eco) throws IOException {
+        eco.sendMessage("Make your buff!");
+        int bluff = TextUI.getIntegerOnline(eco);
+        eco.sendMessage("You awnser with a bluff of: " + bluff);
+        return bluff;
+    }
 
     static void doYouBelieve(String name, String playerName) {
         println(name + " do you believe that " + playerName + " rolled this?");
@@ -114,7 +146,7 @@ public class TextUI {
     }
 
     static void turnChoiceRoll(String name, int turnRoll) {
-        println(name+" rolled " + turnRoll);
+        println(name + " rolled " + turnRoll);
     }
 
     static void rolledTheSame() {
@@ -134,11 +166,11 @@ public class TextUI {
     }
 
     static void rolledHigher(String name, String playerName) {
-        println("" + name + " rolled higher than " + playerName + ", who lose -1 health");
+        println(name + " rolled higher than " + playerName + ", who lose -1 health");
     }
 
     static void rolledLower(String name, String playerName, int show) {
-        println("" + name + " rolled lower than " + playerName + " who rolled " + show + ", and " + name + " lose -1 health");
+        println(name + " rolled lower than " + playerName + " who rolled " + show + ", and " + name + " lose -1 health");
     }
 
     static void wasIncorrect(String name) {

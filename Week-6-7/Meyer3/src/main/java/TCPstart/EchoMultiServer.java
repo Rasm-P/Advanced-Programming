@@ -49,9 +49,11 @@ public class EchoMultiServer {
                 while ((inputLine = in.readLine()) != null) {
                     if (".".equals(inputLine)) {
                         out.println("bye");
+                        System.out.println("bye");
                         break;
                     }
                     out.println(inputLine);
+                    System.out.println(inputLine);
                 }
 
                 in.close();

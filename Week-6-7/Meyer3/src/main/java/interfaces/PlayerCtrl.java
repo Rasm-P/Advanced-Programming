@@ -14,4 +14,8 @@ public interface PlayerCtrl {
     public void takeTurn();
 
     public int turnChoice(String playerName, int show, int roll);
+    
+    public void isOut();
+    
+    public void gameWon();
 }

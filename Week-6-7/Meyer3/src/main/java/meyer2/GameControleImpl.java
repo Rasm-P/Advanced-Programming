@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -41,7 +39,6 @@ public class GameControleImpl implements GameControle {
             pageBreak(0);
             playerList.get(num).takeTurn();
             pageBreak(0);
-            TextUI.playerSaysTheyRolled(playerList.get(num));
             if (num == playerList.size() - 1) {
                 managePoints(playerList.get(num), playerList.get(0));
                 isOut(num);
@@ -69,7 +66,7 @@ public class GameControleImpl implements GameControle {
     @Override
     public void isOut(int number) {
         if (playerList.get(number).getHealth() <= 0) {
-            TextUI.playerIsOut(playerList.get(number));
+            playerList.get(number).isOut();
             playerList.remove(number);
             if (num == playerList.size() - 1) {
                 num = 0;
@@ -110,18 +107,23 @@ public class GameControleImpl implements GameControle {
         } else {
             EchoMultiServer server = new EchoMultiServer();
             try {
-                server.start(5555);
+                Player p = new Player();
+                TextUI.whatPlayerName(1);
+                p.init();
+                playerList.add(p);
                 TextUI.howManyPlayers();
                 int amount = TextUI.getInteger();
+                server.start(5555);
+                TextUI.println("Online players can connect now!");
                 for (int i = 1; i < amount + 1; i++) {
                     OnlinePlayer player = new OnlinePlayer(server.newClientHandler());
-                    TextUI.whatPlayerName(i);
-                    player.init();
+                    player.setName(player.getEchoClientHandler().readMessage());
                     playerList.add(player);
+                    TextUI.println(player.getEchoClientHandler().sendMessage("Hello " + player.getName() + ". You are connected and ready to play!"));
                 }
                 num = RND.nextInt(playerList.size());
             } catch (IOException ex) {
-                Logger.getLogger(GameControleImpl.class.getName()).log(Level.SEVERE, null, ex);
+                TextUI.println(ex.getMessage());
             }
         }
         num = 0;
@@ -129,7 +131,7 @@ public class GameControleImpl implements GameControle {
 
     @Override
     public void gameFinished() {
-        TextUI.gameWinner(playerList.get(0));
+        playerList.get(0).gameWon();
     }
 
     @Override

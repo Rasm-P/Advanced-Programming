@@ -30,6 +30,12 @@ public abstract class PlayerCtrlImpl implements PlayerCtrl {
     @Override
     abstract public int turnChoice(String playerName, int show, int roll);
 
+    @Override
+    abstract public void isOut();
+
+    @Override
+    abstract public void gameWon();
+
     public String getName() {
         return name;
     }

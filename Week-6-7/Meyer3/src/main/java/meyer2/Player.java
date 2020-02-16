@@ -10,7 +10,7 @@ public class Player extends PlayerCtrlImpl {
 
     private static final Random RND = new Random();
     private String name;
-    private int health = 6;
+    private int health = 1;
     private int roll;
     private int showToOtherPlayer;
 
@@ -39,6 +39,7 @@ public class Player extends PlayerCtrlImpl {
     public int turnChoice(String playerName, int show, int roll) {
         int turnRoll;
         String[] choices = {"yes", "no"};
+        TextUI.playerSaysTheyRolled(playerName,show);
         if (show != 0) {
             TextUI.doYouBelieve(name, playerName);
             int answer = TextUI.choice(choices);
@@ -67,6 +68,16 @@ public class Player extends PlayerCtrlImpl {
         } else {
             return 0;
         }
+    }
+    
+    @Override
+    public void isOut() {
+         TextUI.playerIsOut(name);
+    }
+    
+    @Override
+    public void gameWon() {
+        TextUI.gameWinner(name, health);
     }
 
     @Override

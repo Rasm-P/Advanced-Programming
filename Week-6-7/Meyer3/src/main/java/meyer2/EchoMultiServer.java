@@ -7,8 +7,6 @@ package meyer2;
 
 import java.net.*;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -25,16 +23,15 @@ public class EchoMultiServer {
     public void stop() throws IOException {
         serverSocket.close();
     }
-    
+
     public EchoClientHandler newClientHandler() throws IOException {
         EchoClientHandler e = new EchoClientHandler(serverSocket.accept());
         e.start();
         return e;
     }
 
-    
     public static void main(String[] args) throws IOException {
-        EchoMultiServer server=new EchoMultiServer();
+        EchoMultiServer server = new EchoMultiServer();
         server.start(5555);
     }
 }

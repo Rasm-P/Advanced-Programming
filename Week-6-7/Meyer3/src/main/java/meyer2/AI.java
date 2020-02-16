@@ -36,6 +36,7 @@ public class AI extends PlayerCtrlImpl {
     @Override
     public int turnChoice(String playerName, int show, int roll) {
         int turnRoll;
+        TextUI.playerSaysTheyRolled(playerName, show);
         if (show != 0) {
             TextUI.doYouBelieve(name, playerName);
             int answer = RND.nextInt(2);
@@ -65,6 +66,16 @@ public class AI extends PlayerCtrlImpl {
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public void isOut() {
+        TextUI.playerIsOut(name);
+    }
+
+    @Override
+    public void gameWon() {
+        TextUI.gameWinner(name, health);
     }
 
     @Override
