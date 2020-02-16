@@ -10,7 +10,7 @@ public class Player extends PlayerCtrlImpl {
 
     private static final Random RND = new Random();
     private String name;
-    private int health = 6;
+    private int health = 1;
     private int roll;
     private int showToOtherPlayer;
 
