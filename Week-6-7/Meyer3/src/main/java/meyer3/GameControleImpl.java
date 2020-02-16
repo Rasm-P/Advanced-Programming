@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -37,7 +35,7 @@ public class GameControleImpl implements GameControle {
     @Override
     public void playGame() {
         showIntro();
-        while (true) {
+        while (true && num > 0) {
             pageBreak(0);
             playerList.get(num).takeTurn();
             pageBreak(0);
@@ -83,57 +81,64 @@ public class GameControleImpl implements GameControle {
         TextUI.welcome();
         String[] choices = {"PVP", "AI", "Online Host", "Online Client"};
         int answer = TextUI.choice(choices);
-        if (answer == 0) {
-            TextUI.howManyPlayers();
-            int amount = TextUI.getInteger();
-            for (int i = 1; i < amount + 1; i++) {
-                Player player = new Player();
-                TextUI.whatPlayerName(i);
-                player.init();
-                playerList.add(player);
-            }
-            num = RND.nextInt(playerList.size());
-        } else if (answer == 1) {
-            Player player = new Player();
-            TextUI.whatPlayerName(1);
-            player.init();
-            playerList.add(player);
-            TextUI.howManyAi();
-            int amount = TextUI.getInteger();
-            for (int i = 1; i < amount + 1; i++) {
-                AI ai = new AI();
-                TextUI.whatAiName(i);
-                ai.init();
-                playerList.add(ai);
-            }
-        } else if (answer == 2) {
-            EchoMultiServer server = new EchoMultiServer();
-            try {
-                Player p = new Player();
-                TextUI.whatPlayerName(1);
-                p.init();
-                playerList.add(p);
+        switch (answer) {
+            case 0: {
                 TextUI.howManyPlayers();
                 int amount = TextUI.getInteger();
-                server.start(5555);
-                TextUI.println("Online players can connect now!");
                 for (int i = 1; i < amount + 1; i++) {
-                    OnlinePlayer player = new OnlinePlayer(server.newClientHandler());
-                    player.setName(player.getEchoClientHandler().readMessage());
+                    Player player = new Player();
+                    TextUI.whatPlayerName(i);
+                    player.init();
                     playerList.add(player);
-                    TextUI.println(player.getEchoClientHandler().sendMessage("Hello " + player.getName() + ". You are connected and ready to play!"));
                 }
                 num = RND.nextInt(playerList.size());
-            } catch (IOException ex) {
-                TextUI.println(ex.getMessage());
+                break;
             }
-        } else {
-            try {
-                ClientGameControle GC = ClientGameControle.getInstance();
-                GC.playGame();
-            } catch (IOException ex) {
-                TextUI.println(ex.getMessage());
+            case 1: {
+                Player player = new Player();
+                TextUI.whatPlayerName(1);
+                player.init();
+                playerList.add(player);
+                TextUI.howManyAi();
+                int amount = TextUI.getInteger();
+                for (int i = 1; i < amount + 1; i++) {
+                    AI ai = new AI();
+                    TextUI.whatAiName(i);
+                    ai.init();
+                    playerList.add(ai);
+                }
+                break;
             }
+            case 2:
+                EchoMultiServer server = new EchoMultiServer();
+                try {
+                    Player p = new Player();
+                    TextUI.whatPlayerName(1);
+                    p.init();
+                    playerList.add(p);
+                    TextUI.howManyPlayers();
+                    int amount = TextUI.getInteger();
+                    server.start(5555);
+                    TextUI.println("Online players can connect now!");
+                    for (int i = 1; i < amount + 1; i++) {
+                        OnlinePlayer player = new OnlinePlayer(server.newClientHandler());
+                        player.setName(player.getEchoClientHandler().readMessage());
+                        playerList.add(player);
+                        TextUI.println(player.getEchoClientHandler().sendMessage("Hello " + player.getName() + ". You are connected and ready to play!"));
+                    }
+                    num = RND.nextInt(playerList.size());
+                } catch (IOException ex) {
+                    TextUI.println(ex.getMessage());
+                }
+                break;
+            default:
+                try {
+                    ClientGameControle GC = ClientGameControle.getInstance();
+                    GC.playGame();
+                } catch (IOException ex) {
+                    TextUI.println(ex.getMessage());
+                }
+                break;
         }
         num = 0;
     }
