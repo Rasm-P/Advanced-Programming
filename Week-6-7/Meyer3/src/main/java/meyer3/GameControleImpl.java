@@ -35,7 +35,7 @@ public class GameControleImpl implements GameControle {
     @Override
     public void playGame() {
         showIntro();
-        while (num != 0) {
+        while (true) {
             pageBreak(0);
             playerList.get(num).takeTurn();
             pageBreak(0);
@@ -126,7 +126,7 @@ public class GameControleImpl implements GameControle {
                         playerList.add(player);
                         TextUI.println(player.getEchoClientHandler().sendMessage("Hello " + player.getName() + ". You are connected and ready to play!"));
                     }
-                    num = RND.nextInt(playerList.size());
+                    num = 0;
                 } catch (IOException ex) {
                     TextUI.println(ex.getMessage());
                 }
