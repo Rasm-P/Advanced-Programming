@@ -21,6 +21,7 @@ public class GameControleImpl implements GameControle {
     private static GameControleImpl instance;
     private final List<PlayerCtrlImpl> playerList = new ArrayList();
     private int num;
+    private int client;
 
     private GameControleImpl() {
     }
@@ -35,7 +36,7 @@ public class GameControleImpl implements GameControle {
     @Override
     public void playGame() {
         showIntro();
-        while (true) {
+        while (client == 0) {
             pageBreak(0);
             playerList.get(num).takeTurn();
             pageBreak(0);
@@ -79,7 +80,7 @@ public class GameControleImpl implements GameControle {
     @Override
     public void showIntro() {
         TextUI.welcome();
-        String[] choices = {"PVP", "AI", "Online Host", "Online Client"};
+        String[] choices = {"PVP", "AI", "LAN Host", "LAN Client"};
         int answer = TextUI.choice(choices);
         switch (answer) {
             case 0: {
@@ -119,12 +120,12 @@ public class GameControleImpl implements GameControle {
                     TextUI.howManyPlayers();
                     int amount = TextUI.getInteger();
                     server.start(5555);
-                    TextUI.println("Online players can connect now!");
+                    TextUI.canConnectNow();
                     for (int i = 1; i < amount + 1; i++) {
                         OnlinePlayer player = new OnlinePlayer(server.newClientHandler());
                         player.setName(player.getEchoClientHandler().readMessage());
                         playerList.add(player);
-                        TextUI.println(player.getEchoClientHandler().sendMessage("Hello " + player.getName() + ". You are connected and ready to play!"));
+                        TextUI.println(player.getEchoClientHandler().sendMessage(TextUI.youAreConnected(player.getName())));
                     }
                     num = 0;
                 } catch (IOException ex) {
@@ -132,6 +133,7 @@ public class GameControleImpl implements GameControle {
                 }
                 break;
             case 3:
+                client = answer;
                 try {
                     ClientGameControle GC = ClientGameControle.getInstance();
                     GC.playGame();

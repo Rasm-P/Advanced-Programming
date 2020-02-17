@@ -42,9 +42,9 @@ public class EchoClientHandler extends Thread {
     }
 
     public void closeConnection() throws IOException {
-        System.out.println("Closing connection!");
         in.close();
         out.close();
         clientSocket.close();
+        TextUI.connectionStopped();
     }
 }

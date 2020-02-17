@@ -42,6 +42,6 @@ public class GreetClient {
         in.close();
         out.close();
         serverSocket.close();
-        TextUI.println("Connection has been stopped!");
+        TextUI.connectionStopped();
     }
 }
