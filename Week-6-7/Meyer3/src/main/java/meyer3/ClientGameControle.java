@@ -43,6 +43,7 @@ public class ClientGameControle {
                 if (message != null) {
                     TextUI.println(message);
                     if ("...".equals(message)) {
+                        TextUI.println("here!");
                         client.sendMessage(TextUI.getString());
                     }
                 }
