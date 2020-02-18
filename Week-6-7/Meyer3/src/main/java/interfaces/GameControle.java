@@ -5,7 +5,7 @@
  */
 package interfaces;
 
-import meyer3.PlayerCtrlImpl;
+import meyer3.PlayerCtrlAbs;
 
 /**
  *
@@ -15,7 +15,7 @@ public interface GameControle {
 
     public void playGame();
 
-    public void managePoints(PlayerCtrlImpl currentPlayer, PlayerCtrlImpl nextPlayers);
+    public void managePoints(PlayerCtrlAbs currentPlayer, PlayerCtrlAbs nextPlayers);
 
     public void isOut(int number);
 

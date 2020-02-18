@@ -6,7 +6,7 @@ import java.util.Random;
  *
  * @author Rasmus2
  */
-public class AI extends PlayerCtrlImpl {
+public class AI extends PlayerCtrlAbs {
 
     private static final Random RND = new Random();
     private String name;

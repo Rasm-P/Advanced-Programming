@@ -11,14 +11,14 @@ import interfaces.PlayerCtrl;
  *
  * @author rasmu
  */
-public abstract class PlayerCtrlImpl implements PlayerCtrl {
+public abstract class PlayerCtrlAbs implements PlayerCtrl {
 
     private String name;
     private int health = 6;
     private int roll;
     private int showToOtherPlayer;
 
-    public PlayerCtrlImpl() {
+    public PlayerCtrlAbs() {
 
     }
 

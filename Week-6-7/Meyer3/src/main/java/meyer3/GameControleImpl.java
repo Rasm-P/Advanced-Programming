@@ -19,7 +19,7 @@ public class GameControleImpl implements GameControle {
 
     private static final Random RND = new Random();
     private static GameControleImpl instance;
-    private final List<PlayerCtrlImpl> playerList = new ArrayList();
+    private final List<PlayerCtrlAbs> playerList = new ArrayList();
     private int num;
     private int client;
 
@@ -60,7 +60,7 @@ public class GameControleImpl implements GameControle {
     }
 
     @Override
-    public void managePoints(PlayerCtrlImpl currentPlayer, PlayerCtrlImpl nextPlayers) {
+    public void managePoints(PlayerCtrlAbs currentPlayer, PlayerCtrlAbs nextPlayers) {
         currentPlayer.setHealth(currentPlayer.getHealth() - nextPlayers.turnChoice(currentPlayer.getName(), currentPlayer.getShowToOtherPlayer(), currentPlayer.getRoll()));
     }
 
