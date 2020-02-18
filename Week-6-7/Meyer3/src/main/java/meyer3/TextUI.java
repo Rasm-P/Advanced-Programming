@@ -245,7 +245,19 @@ public class TextUI {
     }
 
     static void gameWonMessage(String name, int health, EchoClientHandler echoClientHandler) {
-        println(echoClientHandler.sendMessage("Game over! The winner is " + name + " with " + health + " health!"));
+        println(echoClientHandler.sendMessage("The Game is over! The winner is " + name + " with " + health + " health!"));
+    }
+
+    static void connectionStopped() {
+        println("Connection has been stopped!");
+    }
+
+    static void canConnectNow() {
+        println("Online players can connect now!");
+    }
+
+    static String youAreConnected(String name) {
+        return "Hello " + name + ". You are connected and ready to play!";
     }
 
 }

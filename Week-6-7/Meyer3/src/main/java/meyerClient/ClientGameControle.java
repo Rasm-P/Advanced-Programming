@@ -27,7 +27,7 @@ public class ClientGameControle {
     }
 
     public void playGame() throws IOException {
-        try {
+    
             int port = 5555;
             String IP;
             //"192.168.1.6"
@@ -48,9 +48,7 @@ public class ClientGameControle {
                 }
             }
             client.stopConnection();
-        } catch (IOException ex) {
-            client.stopConnection();
         }
 
     }
-}
+
