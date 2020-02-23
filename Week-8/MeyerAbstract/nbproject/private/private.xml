@@ -3,10 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rasmu/Documents/NetBeansProjects/MeyerTobias/src/textio/TextIOServer.java</file>
-            <file>file:/C:/Users/rasmu/Documents/NetBeansProjects/MeyerTobias/src/textgame/TextGameServer.java</file>
-            <file>file:/C:/Users/rasmu/Documents/NetBeansProjects/MeyerTobias/src/textio/TestHandler.java</file>
-            <file>file:/C:/Users/rasmu/Documents/NetBeansProjects/MeyerTobias/src/textio/GUITextIO.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/impl/MeyerRollImpl.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/textgame/TextGameClient.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/meyer/MeyerPlayer.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/meyer/MeyerRollFactory.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/sync/SyncBox.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/meyer/MeyerPlayerIO.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/run/MeyerGameServer.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/textio/ITextIO.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/impl/MeyerPlayerIOImpl.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/impl/MeyerRollFactoryImpl.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/textgame/TextGameServer.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/impl/MeyerPlayerImpl.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/meyer/MeyerGameCtrl.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/sync/Illustration.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/impl/MeyerGameCtrlImpl.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/textio/GUITextIO.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/textgame/NotSoCoolGame.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/textgame/ITextGame.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/textio/SysTextIO.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/sync/SyncBoxFactory.java</file>
+            <file>file:/C:/Users/rasmu/Desktop/Advanced-Programming/Week-8/MeyerAbstract/src/textio/TextIOServer.java</file>
         </group>
     </open-files>
 </project-private>
