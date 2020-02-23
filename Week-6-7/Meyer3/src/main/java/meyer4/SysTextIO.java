@@ -10,39 +10,34 @@ import java.util.Scanner;
 
 /**
  *
- * @author Tobias Grundtvig
+ * @author rasmu
  */
-public class SysTextIO implements ITextIO
-{
+public class SysTextIO implements ITextIO {
 
     private final static Scanner keyboard = new Scanner(System.in);
-    
+
     @Override
-    public String put(String str)
-    {
+    public String put(String str) {
         System.out.print(str);
         return str;
     }
 
     @Override
-    public String get()
-    {
+    public String get() {
+        System.out.print("\n");
         return keyboard.nextLine();
     }
 
     @Override
-    public void clear()
-    {
-        for(int i = 0; i < 100; ++i)
-        {
+    public void clear() {
+        for (int i = 0; i < 100; ++i) {
             System.out.println("");
         }
     }
 
     @Override
-    public void close() throws IOException
-    {
+    public void close() throws IOException {
         System.out.println("\n\n\nGoodbye!\n\n\n");
     }
-    
+
 }

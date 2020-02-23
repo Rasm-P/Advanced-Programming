@@ -9,14 +9,12 @@ package meyer4;
  *
  * @author rasmu
  */
-public class SyncBox<E>
-{
+public class SyncBox<E> {
+
     private E obj = null;
 
-    public synchronized E get() throws InterruptedException
-    {
-        while (obj == null)
-        {
+    public synchronized E get() throws InterruptedException {
+        while (obj == null) {
             wait();
         }
         E res = obj;
@@ -25,10 +23,8 @@ public class SyncBox<E>
         return res;
     }
 
-    public synchronized void put(E obj) throws InterruptedException
-    {
-        while (this.obj != null)
-        {
+    public synchronized void put(E obj) throws InterruptedException {
+        while (this.obj != null) {
             wait();
         }
         this.obj = obj;
