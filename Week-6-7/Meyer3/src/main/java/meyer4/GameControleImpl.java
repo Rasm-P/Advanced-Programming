@@ -68,11 +68,7 @@ public class GameControleImpl implements GameControle {
         if (playerList.get(number).getHealth() <= 0) {
             playerList.get(number).isOut();
             playerList.remove(number);
-            if (num == playerList.size() - 1) {
-                num = 0;
-            } else {
-                num += 1;
-            }
+            num = num -1;
         }
     }
 
