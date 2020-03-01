@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a6368541-2fea-4c2c-b91d-bc646d3d74e1" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1X1m9f2NOXXxXn28pPgk4kOgx53" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="C:/DevelopmentProjects/legoTrainProject/JavaUtility" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="advprg.meyer.run" />
+      <recent name="advprg.meyer" />
+      <recent name="advprg.meyer.impl" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tgrun\OneDrive - EFIF\CBA\F2020\Avanceret programmering\Projects\Meyer\src\advprg\meyer" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.TextGameClient">
+    <configuration name="GUITextGameServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="advprg.meyer.textgame.GUITextGameServer" />
+      <module name="Meyer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="advprg.meyer.textgame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GuessANumber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="advprg.meyer.textgame.GuessANumber" />
+      <module name="Meyer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="advprg.meyer.textgame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MeyerGameServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="advprg.meyer.run.MeyerGameServer" />
+      <module name="Meyer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="advprg.meyer.run.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotSoCoolGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="advprg.meyer.textgame.NotSoCoolGame" />
+      <module name="Meyer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="advprg.meyer.textgame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextGameClient" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="advprg.meyer.textgame.TextGameClient" />
+      <module name="Meyer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="advprg.meyer.textgame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.GuessANumber" />
+      <item itemvalue="Application.GUITextGameServer" />
+      <item itemvalue="Application.MeyerGameServer" />
+      <item itemvalue="Application.NotSoCoolGame" />
+      <item itemvalue="Application.TextGameClient" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TextGameClient" />
+        <item itemvalue="Application.MeyerGameServer" />
+        <item itemvalue="Application.GuessANumber" />
+        <item itemvalue="Application.NotSoCoolGame" />
+        <item itemvalue="Application.GUITextGameServer" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a6368541-2fea-4c2c-b91d-bc646d3d74e1" name="Default Changelist" comment="" />
+      <created>1580221824103</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580221824103</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
