@@ -24,7 +24,7 @@ public class syncBufferImpl2<E> implements syncBuffer<E> {
 
     @Override
     public synchronized void put(E item) throws InterruptedException {
-        while (li.size() == capacity) {
+        while (li.size() >= capacity) {
             wait();
         }
         li.add(item);
