@@ -13,7 +13,7 @@ float angleForX = PI/3;
 PImage image;
 
 void setup() {
-  image = loadImage("C:\\Users\\rasmu\\Desktop\\test\\blurred.jpg");
+  image = loadImage("C:\\Users\\rasmu\\Desktop\\Advanced-Programming\\ExamDemos\\test\\blurred.jpg");
   image.resize(600,600);
   size(600,600, P3D);
   cols = w / scl;
