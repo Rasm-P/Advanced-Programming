@@ -24,7 +24,8 @@ color[] cp = {
   color(148, 56, 0)
 }; 
 
-int[] terrain; 
+int[] terrain;
+int[] biome;
 
 
 void setup() {
@@ -34,8 +35,8 @@ void setup() {
   terrain = new int[height*width];
   for (int j = 0; j < height; j++) {
     for (int i = 0; i < width; i++) {
-      pixels[j*width + i] = cp[1];
-      terrain[j*width + i] = 1;
+      pixels[j*width + i] = cp[3];
+      terrain[j*width + i] = 3;
     }
   } 
   updatePixels();
