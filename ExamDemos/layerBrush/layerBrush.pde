@@ -18,6 +18,7 @@ color[] cp = {
   color(187, 76, 15), 
   color(148, 56, 0)
 }; 
+int col = 1;
 
 final int layer1 = 1;
 final int layer2  = 2;
@@ -25,6 +26,10 @@ final int layer3  = 3;
 final int layer4  = 4;
 final int layer5  = 5;
 int state = layer1;
+
+final int edit = 1;
+final int delete = 2;
+int mode = edit;
 
 
 void setup() {
@@ -52,21 +57,47 @@ void draw() {
 
 void mouseDragged() {
   loop();
-  editDraw(state);
+  if (mode == edit) {
+    editDraw(state, col);
+  } else if (mode == delete) {
+    deleteDraw(state);
+  }
 }
 
 
-void editDraw(int i) {
+void editDraw(int i, int c) {
   PGraphics pg = layers.get(i);
   if (mousePressed) {
     pg.beginDraw();
-    pg.stroke(cp[i]);
+    pg.stroke(cp[c]);
     pg.strokeWeight(100);
     pg.line(pmouseX, pmouseY, mouseX, mouseY);
     pg.endDraw();
   }
   noStroke();
   circle(mouseX, mouseY, 100);
+}
+
+
+void deleteDraw(int i) {
+  PGraphics pg = layers.get(i);
+  if (mousePressed) {
+    pg.beginDraw();
+    pg.loadPixels();
+    for (int x=0; x<pg.width; x++) {
+      for (int y=0; y<pg.height; y++ ) {
+        float distance = dist(x, y, mouseX, mouseY);
+        if (distance <= 25) {
+          int loc = x + y*pg.width;
+          pg.pixels[loc] = 0x0;
+        }
+      }
+    }
+    pg.updatePixels();
+    pg.endDraw();
+  }
+  noStroke();
+  circle(mouseX, mouseY, 50);
 }
 
 
@@ -82,5 +113,19 @@ void keyPressed() {
     state = layer4;
   } else if (key == '5') {
     state = layer5;
+  }
+
+  if (key == 'q') {
+    if (col == cp.length-1) {
+      col = 1;
+    } else {
+      col = col+1;
+    }
+  }
+
+  if (key == 'e') {
+    mode = edit;
+  } else if (key == 'd') {
+    mode = delete;
   }
 }

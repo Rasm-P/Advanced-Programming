@@ -1,0 +1,7 @@
+Wishfull programming
+
+Streams
+
+Annotations
+
+Refference til processing events
