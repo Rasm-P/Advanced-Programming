@@ -31,6 +31,9 @@ final int edit = 1;
 final int delete = 2;
 int mode = edit;
 
+ArrayList<PVector> points;
+PShape path;
+
 
 void setup() {
   size(1920, 1080);
@@ -43,6 +46,8 @@ void setup() {
   for (int i = 0; i < 5; i++) {
     layers.add(createGraphics(width, height));
   }
+
+  points = new ArrayList<PVector>();
 }
 
 
@@ -51,6 +56,7 @@ void draw() {
   for (int i = 0; i < layers.size(); i++) {
     image(layers.get(i), 0, 0);
   }
+
   noLoop();
 }
 
@@ -58,9 +64,24 @@ void draw() {
 void mouseDragged() {
   loop();
   if (mode == edit) {
-    editDraw(state, col);
+    if (state == layer1) {
+      editDraw(state, col);
+    }
   } else if (mode == delete) {
     deleteDraw(state);
+  }
+}
+
+void mousePressed() {
+  loop();
+  if (mode == edit) {
+    if (state == layer2) {
+      editPath(state);
+    }
+  } else if (mode == delete) {
+    if (state == layer2) {
+      deletePath(state);
+    }
   }
 }
 
@@ -98,6 +119,47 @@ void deleteDraw(int i) {
   }
   noStroke();
   circle(mouseX, mouseY, 50);
+}
+
+
+void editPath(int i) {
+  points.add(new PVector(mouseX, mouseY));
+  PGraphics pg = layers.get(i);
+  pg.beginDraw();
+  pg.noFill();
+  pg.beginShape();
+  if (points.size()>0) {
+    pg.curveVertex(points.get(0).x, points.get(0).y);
+    for (PVector p : points) {
+      pg.curveVertex(p.x, p.y);
+      pg.ellipse(p.x, p.y, 3, 3);
+    }
+  }
+  pg.endShape();
+  pg.endDraw();
+}
+
+
+void deletePath(int i) {
+  if (points.size()>2) {
+    points.remove(points.size()-1);
+  }
+  PGraphics pg = layers.get(i);
+  pg.beginDraw(); 
+  pg.clear();
+  pg.endDraw();
+  pg.beginDraw();
+  pg.noFill();
+  pg.beginShape();
+  if (points.size()>0) {
+    pg.curveVertex(points.get(0).x, points.get(0).y);
+    for (PVector p : points) {
+      pg.curveVertex(p.x, p.y);
+      pg.ellipse(p.x, p.y, 3, 3);
+    }
+  }
+  pg.endShape();
+  pg.endDraw();
 }
 
 
